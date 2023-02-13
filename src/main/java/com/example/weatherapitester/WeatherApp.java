@@ -9,7 +9,7 @@ public class WeatherApp extends JFrame {
         weatherApiTester = new WeatherApiTester();
 
         setTitle("Weather App");
-        setSize(400, 400);
+        setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

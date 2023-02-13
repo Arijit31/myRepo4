@@ -30,9 +30,9 @@ public class WeatherData {
 
     @Override
     public String toString() {
-        return "WeatherData{" +
-                "location=" + location +
-                ", current=" + current +
+        return "WeatherData{\n" +
+                "location=" + location + "\n" +
+                " current=" + current + "\n"+
                 '}';
     }
 
@@ -112,15 +112,15 @@ public class WeatherData {
 
         @Override
         public String toString() {
-            return "Location{" +
-                    "name='" + name + '\'' +
-                    ", region='" + region + '\'' +
-                    ", country='" + country + '\'' +
-                    ", lat=" + lat +
-                    ", lon=" + lon +
-                    ", tz_id='" + tz_id + '\'' +
-                    ", localtime_epoch=" + localtime_epoch +
-                    ", localtime='" + localtime + '\'' +
+            return "Location{\n" +
+                    "name='" + name + '\'' + "\n" +
+                    " region='" + region + '\'' + "\n" +
+                    " country='" + country + '\'' + "\n" +
+                    " lat=" + lat + "\n" +
+                    " lon=" + lon + "\n" +
+                    " tz_id='" + tz_id + '\'' + "\n"  +
+                    " localtime_epoch=" + localtime_epoch + "\n" +
+                    " localtime='" + localtime + '\'' + "\n" +
                     '}';
         }
     }
@@ -362,30 +362,30 @@ public class WeatherData {
 
         @Override
         public String toString() {
-            return "Current{" +
-                    "last_updated_epoch=" + lastUpdatedEpoch +
-                    ", last_updated='" + lastUpdated + '\'' +
-                    ", temp_c=" + temperatureInCelsius +
-                    ", temp_f=" + temperatureInFahrenheit +
-                    ", is_day=" + isDay +
-                    ", condition=" + condition +
-                    ", wind_mph=" + windSpeedInMph +
-                    ", wind_kph=" + windSpeedInKph +
-                    ", wind_degree=" + windDegree +
-                    ", wind_dir='" + windDirection + '\'' +
-                    ", pressure_mb=" + pressureInMillibar +
-                    ", pressure_in=" + pressureInInch +
-                    ", precip_mm=" + precipitationInMillimeter +
-                    ", precip_in=" + precipitationInInch +
-                    ", humidity=" + humidity +
-                    ", cloud=" + cloudCover +
-                    ", feelslike_c=" + feelsLikeTemperatureInCelsius +
-                    ", feelslike_f=" + feelsLikeTemperatureInFahrenheit +
-                    ", vis_km=" + visibilityInKilometer +
-                    ", vis_miles=" + visibilityInMiles +
-                    ", uv=" + uvIndex +
-                    ", gust_mph=" + gustSpeedInMph +
-                    ", gust_kph=" + gustSpeedInKph +
+            return "Current{+ \n" +
+                    "last_updated_epoch=" + lastUpdatedEpoch + "\n" +
+                    " last_updated='" + lastUpdated + '\'' + "'\n" +
+                    " temp_c=" + temperatureInCelsius + "\n" +
+                    " temp_f=" + temperatureInFahrenheit + "\n" +
+                    " is_day=" + isDay + "\n" +
+                    " condition=" + condition + "\n" +
+                    " wind_mph=" + windSpeedInMph + "\n" +
+                    " wind_kph=" + windSpeedInKph + "\n" +
+                    " wind_degree=" + windDegree + "\n" +
+                    " wind_dir='" + windDirection + '\'' + "'\n" +
+                    " pressure_mb=" + pressureInMillibar + "\n" +
+                    " pressure_in=" + pressureInInch + "\n" +
+                    " precip_mm=" + precipitationInMillimeter + "\n" +
+                    " precip_in=" + precipitationInInch + "\n" +
+                    " humidity=" + humidity + "\n" +
+                    " cloud=" + cloudCover + "\n" +
+                    " feelslike_c=" + feelsLikeTemperatureInCelsius + "\n" +
+                    " feelslike_f=" + feelsLikeTemperatureInFahrenheit + "\n" +
+                    " vis_km=" + visibilityInKilometer + "\n" +
+                    " vis_miles=" + visibilityInMiles + "\n" +
+                    " uv=" + uvIndex + "\n" +
+                    " gust_mph=" + gustSpeedInMph + "\n" +
+                    " gust_kph=" + gustSpeedInKph + "\n" +
                     '}';
         }
     }
