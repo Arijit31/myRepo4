@@ -1,51 +1,45 @@
 package com.example.weatherapitester;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.IOException;
 import java.util.concurrent.locks.Condition;
 
 public class WeatherApiTester {
 
     private static final Logger logger = LoggerFactory.getLogger(WeatherApiTester.class);
 
+    private interface WeatherApiService {
+        @GET("current.json")
+        Call<WeatherData> getCurrentWeatherData(@Query("key") String apiKey, @Query("q") String location, @Query("aqi") String aqi);
+    }
+
     public static void main(String[] args) {
+        String apiKey = "cd9bc59ded6046859f8105127231202";
         String location = "Kolkata";
-        String endpoint = "http://api.weatherapi.com/v1/current.json?key=" + Config.apiKey + "&q=" + location + "&aqi=no";
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://api.weatherapi.com/v1/")
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
+                        .registerTypeAdapter(Condition.class, new ConditionInstanceCreator())
+                        .create()))
+                .build();
+
+        WeatherApiService service = retrofit.create(WeatherApiService.class);
+        Call<WeatherData> call = service.getCurrentWeatherData(apiKey, location, "no");
 
         try {
-            URL url = new URL(endpoint);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("Content-Type", "application/json");
-
-            int responseCode = con.getResponseCode();
-            logger.info("Response Code: {}", responseCode);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String inputLine;
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(Condition.class, new ConditionInstanceCreator())
-                    .create();
-            WeatherData weatherData = gson.fromJson(response.toString(), WeatherData.class);
+            WeatherData weatherData = call.execute().body();
             logger.info("Weather Data: {}", weatherData);
-        } catch (Exception e) {
+        } catch (IOException e) {
             logger.error("Error while getting weather data: {}", e.getMessage());
         }
     }
 }
-
-
