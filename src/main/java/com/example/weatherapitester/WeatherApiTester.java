@@ -16,9 +16,8 @@ public class WeatherApiTester {
     private static final Logger logger = LoggerFactory.getLogger(WeatherApiTester.class);
 
     public static void main(String[] args) {
-        String apiKey = "cd9bc59ded6046859f8105127231202";
         String location = "Kolkata";
-        String endpoint = "http://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + location + "&aqi=no";
+        String endpoint = "http://api.weatherapi.com/v1/current.json?key=" + Config.apiKey + "&q=" + location + "&aqi=no";
 
         try {
             URL url = new URL(endpoint);
